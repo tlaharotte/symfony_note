@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>Produit</h1>
+    <p>{{ product.name }}</p>
+    <p>{{ product.price }} €</p>
+    <p>{{ product.description }}</p>
+    <a href="{{ path('product.index') }}">Retour</a>
+    <button id="ajout">Ajout</button>
+    <script>
+        var ajout = document.getElementById("ajout");
+        let id = '{{ product.id }}';
+        ajout.addEventListener('click', ()=>{
+            fetch('/cart/add/'+id).then((response)=>{
+                console.log(response);
+            });
+        })
+    </script>
+
+{% endblock %}

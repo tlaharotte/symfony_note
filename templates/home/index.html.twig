@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="container-fluid">
+
+<div class="row col-12">
+<div class="col-6">
+<h2>Produits les plus récents</h2>
+    {% for product in mostRecentProducts %}
+    <div style="border: solid 1px;">
+    <a href="{{ path('product.show', {id : product.id}) }}">
+        <p>{{ product.name }}</p>
+        <p>{{ product.createdAt | date('d/m/Y') }}</p></a>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="col-6" >
+<h2>Produits les moins cher</h2>
+    {% for product in mostCheaperProducts %}
+    <div style="border: solid 1px;">
+    <a href="{{ path('product.show', {id : product.id}) }}">
+        <p>{{ product.name }}</p>
+        <p>{{ product.price }} €</p></a>
+        </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+
+{% endblock %}
