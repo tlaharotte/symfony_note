@@ -4,8 +4,8 @@
     <p>{{ product.name }}</p>
     <p>{{ product.price }} €</p>
     <p>{{ product.description }}</p>
-    <a href="{{ path('product.index') }}">Retour</a>
-    <button id="ajout">Ajout</button>
+    <a class="btn btn-dark" href="{{ path('product.index') }}">Retour</a>
+    <button class="btn btn-primary" id="ajout">Ajouter au panier</button>
     <script>
         var ajout = document.getElementById("ajout");
         let id = '{{ product.id }}';

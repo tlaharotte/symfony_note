@@ -24,7 +24,7 @@
                     <td>{{ product.name }}</td>
                     <td>1</td>
                     <td>{{ product.price }} €</td>
-                    <td><button class="btn btn-danger" onclick="window.location.href = {{ path('cart.delete', {id : product.id}) }}">Supprimer</button></td>
+                    <td><a class="btn btn-danger" href="{{ path('cart.delete', {id : product.id}) }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
             <tr>

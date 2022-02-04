@@ -21,16 +21,14 @@ class CartController extends AbstractController
     public function index(SessionInterface $session, ProductRepository $productRepository): Response
     {
         $cart = $session->get('panier', []);
+        $products=[];
         
         $total=0;
 
         foreach($cart as $id => $quantity)
         {
-            $products[] = $productRepository->find($id);
-            // foreach($products as $price){
-            //     $total+=$price[2];
-            // }
-
+            $products[$id] = $productRepository->find($id);
+            $total += $products[$id]->getPrice();
         }
 
         $command = new Command();
@@ -73,13 +71,12 @@ class CartController extends AbstractController
         $product=$productRepository->find($id);
         $cart = $session->get('panier', []);
         if(!isset($cart[$id])){
-            $this->addFlash('alert-error', "Le produit n'est pas présent dans le panier");
+            $this->addFlash('alert-error', "Le produit non présent dans le panier");
             return $this->redirectToRoute('cart');
         }
 
         unset($cart[$id]);
         $session->set('panier', $cart);
-
         return $this->redirectToRoute('cart.index');
     }
 }
